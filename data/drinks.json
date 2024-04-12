@@ -1,0 +1,10 @@
+{    
+    "drinks":[ 
+        { 
+            "id": 1, "name" : "gin-tonic", "description": "gin and tonic", "recipe": { "gin": { "amount": 50},"tonic": { "amount": 150}} 
+        }, 
+        { 
+            "id":2, "name" : "cuba-libre", "description": "rum and cola", "recipe": { "rum": { "amount": 3},"cola": { "amount": 3}} 
+        } 
+    ] 
+} 

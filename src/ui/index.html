@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live Stock</title>
+  <style>
+
+    body {
+      background-color: #f5f5f5;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      text-align: center; 
+    }
+
+    .stock-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+
+
+    .stock-item {
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      margin: 10px;
+      padding: 20px;
+      width: calc(25% - 20px);
+      position: relative;
+    }
+
+
+    .stock-item h2 {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+    }
+
+
+    .warning-sign {
+      font-size: 24px;
+      margin-left: 10px; 
+    }
+
+    .warning-red {
+      color: red;
+    }
+
+    .warning-yellow {
+      color: rgb(255, 192, 0);
+    }
+
+    .stock-table {
+      width: 100%;
+    }
+
+    .stock-table td {
+      padding: 8px;
+      border-bottom: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+  <h1>LIVE STOCK</h1>
+  <div id="stock-container" class="stock-container"></div>
+  
+  <script>
+    const stockContainer = document.getElementById('stock-container');
+
+    const eventSource = new EventSource('api/sse');
+
+    eventSource.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      console.log('Received message from server:', data);
+
+     
+      stockContainer.innerHTML = '';
+
+
+      data.forEach(item => {
+        const stockItem = document.createElement('div');
+        stockItem.classList.add('stock-item');
+
+        const title = document.createElement('h2');
+        title.textContent = item.name;
+        
+
+        if (item.quantity === 0) {
+          title.innerHTML += '<span class="warning-sign warning-red">&#9888;</span>';
+        } else if (item.quantity <= 3) {
+          title.innerHTML += '<span class="warning-sign warning-yellow">&#9888;</span>';
+        }
+
+        const table = document.createElement('table');
+        table.classList.add('stock-table');
+
+        // Create table rows for amount and unit
+        const amountRow = document.createElement('tr');
+        const amountLabel = document.createElement('td');
+        amountLabel.textContent = 'Amount:';
+        const amountValue = document.createElement('td');
+        amountValue.textContent = item.quantity;
+        amountRow.appendChild(amountLabel);
+        amountRow.appendChild(amountValue);
+
+        const unitRow = document.createElement('tr');
+        const unitLabel = document.createElement('td');
+        unitLabel.textContent = 'Unit:';
+        const unitValue = document.createElement('td');
+        unitValue.textContent = item.unit;
+        unitRow.appendChild(unitLabel);
+        unitRow.appendChild(unitValue);
+
+        table.appendChild(amountRow);
+        table.appendChild(unitRow);
+
+        stockItem.appendChild(title);
+        stockItem.appendChild(table);
+
+        stockContainer.appendChild(stockItem);
+      });
+    };
+
+    eventSource.onerror = (error) => {
+      console.error('Error with SSE connection:', error);
+    };
+  </script>
+</body>
+</html>

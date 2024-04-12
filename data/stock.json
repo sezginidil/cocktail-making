@@ -1,0 +1,52 @@
+{
+  "stock": [
+    {
+      "id": 1,
+      "name": "lemon",
+      "quantity": 16,
+      "unit": "slice"
+    },
+    {
+      "id": 2,
+      "name": "gin",
+      "quantity": 600,
+      "unit": "ml"
+    },
+    {
+      "id": 3,
+      "name": "tonic",
+      "quantity": 700,
+      "unit": "ml"
+    },
+    {
+      "id": 4,
+      "name": "rum",
+      "quantity": 500,
+      "unit": "ml"
+    },
+    {
+      "id": 5,
+      "name": "cola",
+      "quantity": 750,
+      "unit": "ml"
+    },
+    {
+      "id": 6,
+      "name": "tequila",
+      "quantity": 0,
+      "unit": "ml"
+    },
+    {
+      "id": 7,
+      "name": "ice",
+      "quantity": 5,
+      "unit": "piece"
+    },
+    {
+      "id": 8,
+      "name": "vodka",
+      "quantity": 350,
+      "unit": "ml"
+    }
+  ]
+}
