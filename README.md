@@ -2,7 +2,7 @@
 
 This API provides endpoints for managing ingredients and ordering drinks for a cocktail-making system. Additionally, it offers a live stock UI for monitoring ingredient quantities in real-time.
 
-Under the "cpee" folder, example cpee processes can be found. Endpoints should be updated before using testsets.
+Under the "cpee" folder, example cpee processes and the screenshots can be found. Endpoints should be updated before using testsets.
 
 ## Installation
 
@@ -83,6 +83,8 @@ The API provides a live stock UI for monitoring ingredient quantities in real-ti
 3. The UI will display a list of ingredients and their current quantities.
 4. Ingredients with a quantity of 0 will display a warning sign (⚠️) in red.
 5. Ingredients with a quantity less than or equal to 3 will display a warning sign (⚠️) in yellow.
+
+![Live Stock UI](src/ui/ss-live-stock.png)
 
 ## Author
 

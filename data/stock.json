@@ -3,7 +3,7 @@
     {
       "id": 1,
       "name": "lemon",
-      "quantity": 13,
+      "quantity": 16,
       "unit": "slice"
     },
     {
@@ -39,13 +39,19 @@
     {
       "id": 7,
       "name": "ice",
-      "quantity": 5,
+      "quantity": 2,
       "unit": "piece"
     },
     {
       "id": 8,
       "name": "vodka",
       "quantity": 350,
+      "unit": "ml"
+    },
+    {
+      "id": 9,
+      "name": "martini",
+      "quantity": 0,
       "unit": "ml"
     }
   ]
