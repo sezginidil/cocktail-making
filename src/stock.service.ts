@@ -56,7 +56,7 @@ export class StockService {
 
   async updateOrAddIngredient(ingredientName: string, ingredient: IngredientSchema): Promise<IngredientSchema> {
     const stock = await this.fetchStock();
-    const existingIngredient = stock.find((item) => item.name === ingredientName);
+    const existingIngredient = stock.find((item) => item.name == ingredientName);
   
     if (existingIngredient) {
       existingIngredient.quantity = ingredient.quantity;

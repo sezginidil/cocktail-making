@@ -3,19 +3,19 @@
     {
       "id": 1,
       "name": "lemon",
-      "quantity": 16,
+      "quantity": 13,
       "unit": "slice"
     },
     {
       "id": 2,
       "name": "gin",
-      "quantity": 600,
+      "quantity": 550,
       "unit": "ml"
     },
     {
       "id": 3,
       "name": "tonic",
-      "quantity": 700,
+      "quantity": 550,
       "unit": "ml"
     },
     {
@@ -33,7 +33,7 @@
     {
       "id": 6,
       "name": "tequila",
-      "quantity": 0,
+      "quantity": 10,
       "unit": "ml"
     },
     {
