@@ -1,73 +1,89 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Cocktail Making API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+This API provides endpoints for managing ingredients and ordering drinks for a cocktail-making system. Additionally, it offers a live stock UI for monitoring ingredient quantities in real-time.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
-
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Under the "cpee" folder, example cpee processes can be found. Endpoints should be updated before using testsets.
 
 ## Installation
 
-```bash
-$ npm install
-```
+To get started with the Cocktail Making API, follow these steps:
 
-## Running the app
+1. Clone this repository to your local machine.
+2. Install dependencies by running `npm install`.
+3. Start the server by running `npm run start:dev` on the root directory.
+4. The API will be accessible at `http://localhost:PORT`, where `PORT` is the port number specified in the main.ts.
 
-```bash
-# development
-$ npm run start
+## Endpoints
 
-# watch mode
-$ npm run start:dev
+### Ingredients
 
-# production mode
-$ npm run start:prod
-```
+- **Get Ingredient by Name**
+  - Endpoint: `GET /ingredients/:ingredientName`
+  - Description: Retrieves information about a specific ingredient by name.
+  - Example: `/ingredients/lemon`
 
-## Test
+- **Reduce Stock**
+  - Endpoint: `GET /ingredients/:ingredientName/dec?reduceBy=3`
+  - Description: Reduces the stock of a specific ingredient by the specified quantity or by 1 if "reduceBy" argument is not given.
+  - Example: `/ingredients/lemon/dec?reduceBy=3`
 
-```bash
-# unit tests
-$ npm run test
+- **Update Stock**
+  - Endpoint: `PUT /ingredients/:ingredientName/`
+  - Description: Updates the stock information for a specific ingredient. New ingredients can be added using this endpoint as well.
+  - Example: `/ingredients/lemon/`
+  - Request Body:
+    ```json
+    {
+        "id": 1,
+        "name": "lemon",
+        "quantity": 10,
+        "unit": "slice"
+    }
+    ```
 
-# e2e tests
-$ npm run test:e2e
+- **Get All Ingredients**
+  - Endpoint: `GET /ingredients`
+  - Description: Retrieves a list of all available ingredients.
 
-# test coverage
-$ npm run test:cov
-```
+### Drinks
 
-## Support
+- **Get Available Drinks**
+  - Endpoint: `GET /drinks`
+  - Description: Retrieves a list of all available drinks.
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+- **Order Drink**
+  - Endpoint: `GET /drinks/:drinkName/order`
+  - Description: Places an order for a specific drink.
+  - Example: `/drinks/gin-tonic/order`
 
-## Stay in touch
+- **Is Order Possible**
+  - Endpoint: `GET /drinks/:drinkName/order-possible`
+  - Description: Checks if it's possible to order a specific drink.
+  - Example: `/drinks/gin-tonic/order-possible`
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+- **Get Recipe by Name**
+  - Endpoint: `GET /drinks/:drinkName`
+  - Description: Retrieves the recipe for a specific drink.
+  - Example: `/drinks/gin-tonic`
 
-## License
+## Usage
 
-Nest is [MIT licensed](LICENSE).
+### API Usage
+
+- Ensure the server is running.
+- Use any HTTP client to send requests to the provided endpoints.
+- Include necessary parameters in the request URL or body as described in the endpoint documentation.
+
+### Live Stock UI
+
+The API provides a live stock UI for monitoring ingredient quantities in real-time. To access the UI:
+
+1. Ensure the server is running.
+2. The UI is accessible under the base path. With the default settings, it's visible at `http://localhost:3000`.
+3. The UI will display a list of ingredients and their current quantities.
+4. Ingredients with a quantity of 0 will display a warning sign (⚠️) in red.
+5. Ingredients with a quantity less than or equal to 3 will display a warning sign (⚠️) in yellow.
+
+## Author
+
+This API is maintained by Idil Sezgin.
